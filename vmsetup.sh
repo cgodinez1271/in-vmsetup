@@ -1,5 +1,6 @@
 #!/bin/bash -e
 #Thu Dec  4 12:39:16 EST 2014
+#Carlos A. Godinez, Principal Engineer
 #carlos_godinez@timeinc.com
 #set -x
 
