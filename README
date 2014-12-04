@@ -16,7 +16,11 @@ Step 2: execute vmsetu.sh
 	cd dcms
 	vmsetup.sh instyle release-v2.6.1.2 (or another release as needed)
 
-Step 3: edit your /etc/hosts to add the site info:
+Step 3: Wait for about 45 minutes and validate.
+
+
+NOTE: If needed, update the /etc/hosts per the vmutil info:
+
 	[devadmin@dcms-developer dcms]$ vmutil info instyle
 	[name]: instyle
 	[urls]: www.instyle.local editor.instyle.local
@@ -26,6 +30,3 @@ Step 3: edit your /etc/hosts to add the site info:
 	[module workspace]: /home/devadmin/dcms/instyle/workspace
 	[reference repository]: /home/devadmin/dcms/instyle/reference
 	[site repository]: /home/devadmin/dcms/instyle/src
-	[devadmin@dcms-developer dcms]$ 
-
-
