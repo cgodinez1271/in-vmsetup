@@ -1,5 +1,5 @@
 #!/bin/bash -e
-#Fri Sep  5 13:53:29 EDT 2014
+#Thu Dec  4 12:39:16 EST 2014
 #carlos_godinez@timeinc.com
 #set -x
 
@@ -40,25 +40,18 @@ cd ~/dcms/$SITE/reference
 git checkout $REL
 
 cd ~/dcms/$SITE
-#git clone git@git.timeinc.net:/dcms/sites/$SITE src
-#git clone git@github.com:/TimeInc/dcms-site-myrecipes.git src
 git clone git@github.com:/TimeInc/dcms-site-$SITE.git src
-#cp ~/dcms/site.make src
 
 vmutil build $SITE
 
 echo -e "\n>>> DRUPAL INSTANCE BUILD <<<\n"
 
 cd ~/dcms/$SITE
-set -x
 DB=$(perl -lne 'print $1 if /^\s+.database. => .(\w+_local).,/' /data/timeinc/content/local/$SITE/runtime/settings.php 2>/dev/null)
-DB='in_local'
 echo "Drupal database -> $DB"
 echo "drop database if exists $DB" | mysql --user=devadmin --password=devadmin
-#echo "create database $DB" | mysql --user=devadmin --password=devadmin
-#drush -y si standard --account-name=devadmin --account-pass=devadmin
 drush -y si standard --account-name=devadmin --account-pass=devadmin --db-url='mysql://devadmin:devadmin@localhost/in_local'
-set +x
+
 echo -e "\n>>> CONFIGURING SOLR SEARCH FUNCTIONALITY <<<\n"
 
 export TI_ENV=local
