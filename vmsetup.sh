@@ -36,7 +36,7 @@ sudo bash -c "rm -rf /home/devadmin/dcms/$SITE" > /dev/null 2>&1 || true
 echo 'y' | vmutil build $SITE || true
 
 cd ~/dcms/$SITE
-git clone git@github.com:TimeInc/dcms-reference
+git clone git@github.com:TimeInc/dcms-reference reference
 cd ~/dcms/$SITE/reference
 git checkout $REL
 
