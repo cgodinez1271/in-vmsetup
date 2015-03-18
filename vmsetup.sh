@@ -1,5 +1,5 @@
 #!/bin/bash -e
-#Thu Dec  4 12:39:16 EST 2014
+#Wed Mar 18 14:15:26 EDT 2015
 #Carlos A. Godinez, Principal Engineer
 #carlos_godinez@timeinc.com
 #set -x
@@ -20,13 +20,13 @@ if [[ ! `vmutil list | grep "$SITE"` ]] ; then
 	exit 1
 fi
 
-echo -e "Host git.timeinc.net\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile /dev/null\n" >> ~/.ssh/config
-chmod 600 ~/.ssh/config
+#echo -e "Host git.timeinc.net\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile /dev/null\n" >> ~/.ssh/config
+#chmod 600 ~/.ssh/config
 
 # validate release
-if [[ ! `git ls-remote --tags git@git.timeinc.net:/dcms/reference 2>/dev/null | egrep "$REL$"` ]] ; then
+if [[ ! `git ls-remote --tags git@github.com:TimeInc/dcms-reference 2>/dev/null | egrep "$REL$"` ]] ; then
 	echo -e "\n*** RELEASE NOT AVAILABLE ***\n"
-	git ls-remote --tags git@git.timeinc.net:/dcms/reference 2>/dev/null | perl -lne 'm!refs/tags/(release-v[\d.]+)$! && print $1'
+	git ls-remote --tags git@github.com:TimeInc/dcms-reference 2>/dev/null | perl -lne 'm!refs/tags/(release-v[\d.]+)$! && print $1'
 	exit 1
 fi
 
@@ -36,7 +36,7 @@ sudo bash -c "rm -rf /home/devadmin/dcms/$SITE" > /dev/null 2>&1 || true
 echo 'y' | vmutil build $SITE || true
 
 cd ~/dcms/$SITE
-git clone git@git.timeinc.net:/dcms/reference
+git clone it@github.com:TimeInc/dcms-reference
 cd ~/dcms/$SITE/reference
 git checkout $REL
 
